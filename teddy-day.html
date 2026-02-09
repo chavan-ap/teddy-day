@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧸 Teddy Day 2025</title>
+    
+    <!-- 
+    ═══════════════════════════════════════════════════════════════════
+    TEDDY DAY WEBSITE - CUTE & COZY DESIGN
+    ═══════════════════════════════════════════════════════════════════
+    
+    CUSTOMIZATION:
+    1. Line 147: Your cuddly question
+    2. Line 245: Image file name
+    3. Line 250: Your message
+    4. Line 583-584: Email & Web3Forms key
+    
+    GITHUB DEPLOYMENT:
+    1. Create repo: "teddy-day-2025"
+    2. Upload as "index.html" + photo as "teddyday.jpeg"
+    3. Settings > Pages > Enable
+    4. Share the cuddles! 🧸
+    ═══════════════════════════════════════════════════════════════════
+    -->
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700&display=swap');
+        
+        :root {
+            --teddy-brown: #8B4513;
+            --soft-brown: #D2691E;
+            --cream: #FFFACD;
+            --peach: #FFE5B4;
+            --coral: #FF7F50;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, var(--peach) 0%, var(--cream) 100%);
+            color: var(--teddy-brown);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           FLOATING TEDDIES
+        ═══════════════════════════════════════════════════════════════ */
+        .teddies-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-teddy {
+            position: absolute;
+            font-size: 35px;
+            opacity: 0;
+            animation: floatTeddy 10s infinite ease-in-out;
+        }
+        
+        @keyframes floatTeddy {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(0deg);
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(20deg);
+            }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           MAIN SCREEN
+        ═══════════════════════════════════════════════════════════════ */
+        .screen {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .question-container {
+            background: var(--white);
+            border-radius: 50px;
+            padding: 60px 50px;
+            max-width: 750px;
+            text-align: center;
+            box-shadow: 0 25px 70px rgba(139, 69, 19, 0.3);
+            animation: cuddleIn 1.2s ease-out;
+            border: 6px solid var(--soft-brown);
+        }
+        
+        @keyframes cuddleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) rotate(-5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+        
+        .teddy-icon {
+            font-size: 8rem;
+            display: block;
+            margin-bottom: 30px;
+            animation: teddyHug 2s ease-in-out infinite;
+        }
+        
+        @keyframes teddyHug {
+            0%, 100% {
+                transform: rotate(-5deg) scale(1);
+            }
+            50% {
+                transform: rotate(5deg) scale(1.1);
+            }
+        }
+        
+        .date-badge {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.3rem;
+            color: var(--coral);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        
+        .main-question {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            color: var(--teddy-brown);
+            line-height: 1.4;
+            margin-bottom: 40px;
+            font-weight: 800;
+        }
+        
+        .buttons-container {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .choice-btn {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .yes-btn {
+            background: linear-gradient(135deg, var(--coral), var(--soft-brown));
+            color: white;
+        }
+        
+        .yes-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 127, 80, 0.4);
+        }
+        
+        .no-btn {
+            background: linear-gradient(135deg, var(--peach), var(--cream));
+            color: var(--teddy-brown);
+            position: absolute;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           CELEBRATION SCREEN
+        ═══════════════════════════════════════════════════════════════ */
+        .celebration-screen {
+            display: none;
+            min-height: 100vh;
+            opacity: 0;
+        }
+        
+        .celebration-screen.active {
+            display: flex;
+            animation: celebrateFadeIn 1s ease-out forwards;
+        }
+        
+        @keyframes celebrateFadeIn {
+            to { opacity: 1; }
+        }
+        
+        .celebration-content {
+            max-width: 850px;
+            text-align: center;
+        }
+        
+        .celebration-title {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            color: var(--teddy-brown);
+            margin-bottom: 30px;
+            font-weight: 800;
+            animation: fadeInUp 0.8s ease-out 0.3s backwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .teddies-display {
+            font-size: 5rem;
+            margin: 30px 0;
+            animation: teddiesBounce 1s ease-out 0.5s backwards;
+        }
+        
+        @keyframes teddiesBounce {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .celebration-image {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            border-radius: 40px;
+            margin: 40px auto;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            border: 7px solid var(--coral);
+            animation: fadeInUp 0.8s ease-out 0.7s backwards;
+        }
+        
+        .celebration-message {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: var(--teddy-brown);
+            margin: 40px auto;
+            max-width: 650px;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.9s backwards;
+        }
+        
+        .celebration-message strong {
+            color: var(--coral);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           HEARTS EFFECT
+        ═══════════════════════════════════════════════════════════════ */
+        .heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            animation: heartFloat 3s ease-out forwards;
+        }
+        
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150px) scale(0.5);
+                opacity: 0;
+            }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           MOBILE RESPONSIVE
+        ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .question-container {
+                padding: 45px 35px;
+            }
+            
+            .teddy-icon {
+                font-size: 6rem;
+            }
+            
+            .choice-btn {
+                font-size: 1.4rem;
+                padding: 18px 40px;
+            }
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Teddies Background -->
+    <div class="teddies-bg" id="teddiesBg"></div>
+    
+    <!-- ═══════════════════════════════════════════════════════════════
+         QUESTION SCREEN
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="screen" id="questionScreen">
+        <div class="question-container">
+            <span class="teddy-icon">🧸</span>
+            <div class="date-badge">Teddy Day • February 10, 2025</div>
+            <h1 class="main-question">
+                Want to Cuddle with Me Forever?
+            </h1>
+            <!-- ↑ CUSTOMIZE YOUR QUESTION ↑ -->
+            
+            <div class="buttons-container">
+                <button class="choice-btn yes-btn" id="yesBtn">
+                    Yes, Cuddles! 🧸
+                </button>
+                <button class="choice-btn no-btn" id="noBtn">
+                    Maybe... 😊
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ═══════════════════════════════════════════════════════════════
+         CELEBRATION SCREEN
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="screen celebration-screen" id="celebrationScreen">
+        <div class="celebration-content">
+            <h2 class="celebration-title">
+                Best Cuddle Buddy Ever! 🧸💕
+            </h2>
+            
+            <div class="teddies-display">🧸💖🧸💖🧸</div>
+            
+            <img 
+                src="teddyday.jpeg" 
+                alt="Our cozy moments" 
+                class="celebration-image"
+            />
+            <!-- ↑ CHANGE IMAGE FILENAME HERE ↑ -->
+            
+            <p class="celebration-message">
+                Just like a teddy bear, you bring me comfort, warmth, and endless joy! 
+                Every hug from you feels like home, and every moment together is cozy and perfect.
+                <br><br>
+                You're my favorite person to cuddle with, my soft place to land, 
+                and my forever teddy bear. Thank you for making life so warm and wonderful! 🧸
+                <br><br>
+                <strong>Happy Teddy Day, my cuddle buddy! 💕</strong>
+            </p>
+            <!-- ↑ CUSTOMIZE YOUR MESSAGE ABOVE ↑ -->
+        </div>
+    </div>
+    
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // FLOATING TEDDIES
+        // ═══════════════════════════════════════════════════════════════
+        function createFloatingTeddies() {
+            const container = document.getElementById('teddiesBg');
+            const teddies = ['🧸', '💝', '💕', '🎀', '💖'];
+            
+            setInterval(() => {
+                const teddy = document.createElement('div');
+                teddy.className = 'floating-teddy';
+                teddy.textContent = teddies[Math.floor(Math.random() * teddies.length)];
+                teddy.style.left = Math.random() * 100 + '%';
+                teddy.style.animationDuration = (Math.random() * 3 + 7) + 's';
+                teddy.style.animationDelay = Math.random() * 2 + 's';
+                
+                container.appendChild(teddy);
+                
+                setTimeout(() => teddy.remove(), 12000);
+            }, 1000);
+        }
+        
+        createFloatingTeddies();
+        
+        // ═══════════════════════════════════════════════════════════════
+        // NO BUTTON MOVEMENT
+        // ═══════════════════════════════════════════════════════════════
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        
+        function moveNoButton() {
+            const maxX = window.innerWidth - noBtn.offsetWidth - 40;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 40;
+            
+            const randomX = Math.max(20, Math.random() * maxX);
+            const randomY = Math.max(20, Math.random() * maxY);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.zIndex = '1000';
+        }
+        
+        noBtn.addEventListener('mouseenter', moveNoButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+        
+        // ═══════════════════════════════════════════════════════════════
+        // YES BUTTON - CELEBRATION
+        // ═══════════════════════════════════════════════════════════════
+        yesBtn.addEventListener('click', () => {
+            document.getElementById('questionScreen').classList.add('hidden');
+            
+            const celebrationScreen = document.getElementById('celebrationScreen');
+            celebrationScreen.classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            createHearts();
+            sendEmail();
+        });
+        
+        // ═══════════════════════════════════════════════════════════════
+        // HEARTS EFFECT
+        // ═══════════════════════════════════════════════════════════════
+        function createHearts() {
+            const hearts = ['💕', '💖', '💗', '💝', '🧸'];
+            
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.bottom = '-50px';
+                    heart.style.fontSize = (Math.random() * 25 + 20) + 'px';
+                    
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 80);
+            }
+        }
+        
+        // ═══════════════════════════════════════════════════════════════
+        // EMAIL NOTIFICATION
+        // ═══════════════════════════════════════════════════════════════
+        async function sendEmail() {
+            const YOUR_EMAIL = 'ajaychavan_in@outlook.com';
+            const ACCESS_KEY = '1cb04b7e-b18d-4f18-8249-40c248681b7d';
+            
+            try {
+                await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: ACCESS_KEY,
+                        subject: '🧸 Cuddles Confirmed - Teddy Day!',
+                        from_name: 'Teddy Day Website',
+                        message: `🧸 COZY SUCCESS! 🧸\n\nShe wants cuddles on Teddy Day!\n\n💕 Your best cuddle buddy!\n🕐 Time: ${new Date().toLocaleString()}\n\nTime for warm hugs! 🤗`,
+                        to: YOUR_EMAIL
+                    })
+                });
+                console.log('✅ Teddy Day notification sent!');
+            } catch (error) {
+                console.error('❌ Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>
